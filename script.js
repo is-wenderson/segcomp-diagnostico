@@ -104,7 +104,7 @@ function renderResult() {
                 </a>
                 
                 <p class="text-[9px] text-slate-500 px-4 leading-tight italic uppercase">
-                    Aproveite: Devido à alta demanda na Grande Natal, restam poucos horários para auditoria presencial gratuita nesta semana. [cite: 31, 42]
+                    Aproveite: Devido à alta demanda na Grande Natal, restam poucos horários para auditoria presencial gratuita nesta semana.
                 </p>
 
                 <button onclick="location.reload()" class="text-slate-500 uppercase text-[9px] font-bold tracking-widest hover:text-white transition-colors pt-2">
@@ -112,7 +112,7 @@ function renderResult() {
                 </button>
             </div>
             
-            <p class="mt-6 text-[8px] text-slate-600 uppercase tracking-widest border-t border-slate-800/50 pt-4">Grupo Ecomp • Tecnologia em Segurança [cite: 13]</p>
+            <p class="mt-6 text-[8px] text-slate-600 uppercase tracking-widest border-t border-slate-800/50 pt-4">Grupo Ecomp • Tecnologia em Segurança </p>
         </div>
     `;
 
