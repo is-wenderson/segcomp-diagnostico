@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Segcomp Diagnóstico | Grupo Ecomp</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        ecomp: {
+                            dark: '#0a1128',
+                            navy: '#0f172a',
+                            cyan: '#00e5e5',
+                            accent: '#14b8a6'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .step { transition: all 0.4s ease; }
+        .hidden { display: none !important; }
+        .gradient-text { background: linear-gradient(90deg, #fff, #00e5e5); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        @keyframes pulse-red {
+            0%, 100% { border-color: rgba(239, 68, 68, 0.5); }
+            50% { border-color: rgba(239, 68, 68, 1); box-shadow: 0 0 15px rgba(239, 68, 68, 0.3); }
+        }
+        .critical-border { animation: pulse-red 2s infinite; border-width: 2px !important; }
+    </style>
+</head>
+<body class="bg-ecomp-dark text-slate-100 font-sans antialiased">
+
+    <div id="app" class="min-h-screen flex flex-col items-center justify-center p-4">
+        
+        <div class="mb-8 flex flex-col items-center">
+            <img src="logo-segcomp.svg" alt="Segcomp" class="h-12 w-auto object-contain" onerror="this.style.display='none'">
+            <h2 class="text-ecomp-cyan font-bold italic tracking-widest text-sm mt-2 uppercase">Diagnóstico Rápido</h2>
+        </div>
+
+        <div id="main-card" class="max-w-md w-full bg-ecomp-navy rounded-3xl shadow-2xl p-8 border border-slate-800 relative transition-all duration-500">
+            
+            <div id="step-0" class="step">
+                <h2 class="text-2xl font-bold mb-2 gradient-text text-center italic leading-tight">Auditoria Técnica</h2>
+                <p class="text-slate-400 text-[11px] mb-4 text-center italic leading-relaxed">
+                    Este é um diagnóstico rápido de vulnerabilidade. <br>
+                    <span class="text-ecomp-cyan/80 font-bold">*Não substitui uma visita técnica presencial.</span>
+                </p>
+
+                <div class="bg-ecomp-dark/30 border border-slate-700/50 rounded-2xl p-4 mb-6 text-center">
+                    <p class="text-[10px] text-slate-300">
+                        <i class="fa-solid fa-gift text-ecomp-cyan mr-1"></i> 
+                        Conclua para liberar o <strong>Guia de Segurança Condominial</strong> para Gestores e Síndicos.
+                    </p>
+                </div>
+                
+                <div class="grid grid-cols-3 gap-2 mb-8 text-center text-white">
+                    <div class="bg-ecomp-dark/50 p-2 rounded-xl border border-slate-700">
+                        <div class="text-ecomp-cyan font-bold text-sm">+60</div>
+                        <div class="text-[7px] uppercase text-slate-500 font-bold leading-tight text-white">Condomínios em Natal</div>
+                    </div>
+                    <div class="bg-ecomp-dark/50 p-2 rounded-xl border border-slate-700">
+                        <div class="text-ecomp-cyan font-bold text-sm">1.2 mil</div>
+                        <div class="text-[7px] uppercase text-slate-500 font-bold leading-tight text-white">Câmeras Ativas</div>
+                    </div>
+                    <div class="bg-ecomp-dark/50 p-2 rounded-xl border border-slate-700">
+                        <div class="text-ecomp-cyan font-bold text-sm">3 mil</div>
+                        <div class="text-[7px] uppercase text-slate-500 font-bold leading-tight text-white">Atendimentos</div>
+                    </div>
+                </div>
+
+                <button onclick="nextStep(1)" class="w-full bg-ecomp-cyan text-ecomp-dark font-black py-4 rounded-2xl shadow-lg uppercase text-sm hover:scale-[1.02] transition-transform">
+                    Iniciar Diagnóstico
+                </button>
+            </div>
+
+            <div id="step-1" class="step hidden">
+                <h2 class="text-xl font-bold mb-6 italic text-ecomp-cyan text-center">Identificação</h2>
+                <div class="space-y-4">
+                    <input type="text" id="userName" placeholder="Seu nome" class="w-full p-4 rounded-xl bg-ecomp-dark border border-slate-700 focus:border-ecomp-cyan outline-none text-white text-sm">
+                    <select id="userRole" class="w-full p-4 rounded-xl bg-ecomp-dark border border-slate-700 focus:border-ecomp-cyan outline-none text-slate-400 text-sm">
+                        <option value="" disabled selected>Seu cargo</option>
+                        <option value="Síndico">Síndico(a)</option>
+                        <option value="Conselheiro">Subsindico</option>
+                        <option value="Zelador">Gestor</option>
+                        <option value="Conselheiro">Conselheiro/Morador</option>
+                    </select>
+                    <input type="text" id="condoName" placeholder="Nome do Condomínio" class="w-full p-4 rounded-xl bg-ecomp-dark border border-slate-700 focus:border-ecomp-cyan outline-none text-white text-sm">
+                    <input type="tel" id="userPhone" placeholder="(DDD)99999-9999" inputmode="numeric" oninput="this.value = this.value.replace(/[^0-9]/g, '')" required class="w-full p-4 rounded-xl bg-ecomp-dark border border-slate-700 focus:border-ecomp-cyan outline-none text-white text-sm">
+                    <button onclick="nextStep(2)" class="w-full bg-ecomp-cyan text-ecomp-dark font-black py-4 rounded-2xl mt-2 uppercase shadow-lg">Próximo</button>
+                </div>
+            </div>
+
+            <div id="step-2" class="step hidden text-left">
+                <span class="text-ecomp-cyan text-[10px] font-bold uppercase">Pergunta 01/05</span>
+                <h2 class="text-lg font-bold mt-2 mb-6 italic">Se houver um crime agora, suas câmeras identificam o rosto com nitidez?</h2>
+                <div class="space-y-3">
+                    <button onclick="handleAnswer('identificacao', 20, 3)" class="w-full p-4 text-left border border-slate-700 rounded-xl hover:border-ecomp-cyan transition text-sm text-slate-300 italic">A) Sim, imagem 100% clara.</button>
+                    <button onclick="handleAnswer('identificacao', 10, 3)" class="w-full p-4 text-left border border-slate-700 rounded-xl hover:border-ecomp-cyan transition text-sm text-slate-300 italic">B) Talvez, a imagem é ruim à noite.</button>
+                    <button onclick="handleAnswer('identificacao', 0, 3)" class="w-full p-4 text-left border border-slate-700 rounded-xl hover:border-red-500 transition text-sm text-slate-300 italic text-red-500">C) Difícil, imagem falha ou borrada.</button>
+                </div>
+            </div>
+
+            <div id="step-3" class="step hidden text-left">
+                <span class="text-ecomp-cyan text-[10px] font-bold uppercase">Pergunta 02/05</span>
+                <h2 class="text-lg font-bold mt-2 mb-6 italic">Seu suporte atual é rápido ou você paga caro por um sistema que vive quebrado?</h2>
+                <div class="space-y-3">
+                    <button onclick="handleAnswer('custo', 20, 4)" class="w-full p-4 text-left border border-slate-700 rounded-xl hover:border-ecomp-cyan transition text-sm text-slate-300 italic">A) Preço justo e suporte ágil.</button>
+                    <button onclick="handleAnswer('custo', 10, 4)" class="w-full p-4 text-left border border-slate-700 rounded-xl hover:border-ecomp-cyan transition text-sm text-slate-300 italic">B) Pago valor fixo, mas suporte lento.</button>
+                    <button onclick="handleAnswer('custo', 0, 4)" class="w-full p-4 text-left border border-slate-700 rounded-xl hover:border-red-500 transition text-sm text-slate-300 italic text-red-500">C) Caro e sistema vive com defeitos.</button>
+                </div>
+            </div>
+
+            <div id="step-4" class="step hidden text-left">
+                <span class="text-ecomp-cyan text-[10px] font-bold uppercase">Pergunta 03/05</span>
+                <h2 class="text-lg font-bold mt-2 mb-6 italic">O muro possui "pontos cegos" sem monitoramento ativo?</h2>
+                <div class="space-y-3">
+                    <button onclick="handleAnswer('vulnerabilidade', 20, 5)" class="w-full p-4 text-left border border-slate-700 rounded-xl hover:border-ecomp-cyan transition text-sm text-slate-300 italic">A) Não, todo o perímetro é monitorado.</button>
+                    <button onclick="handleAnswer('vulnerabilidade', 10, 5)" class="w-full p-4 text-left border border-slate-700 rounded-xl hover:border-ecomp-cyan transition text-sm text-slate-300 italic">B) Existem áreas escuras ou sem sensor.</button>
+                    <button onclick="handleAnswer('vulnerabilidade', 0, 5)" class="w-full p-4 text-left border border-slate-700 rounded-xl hover:border-red-500 transition text-sm text-slate-300 italic text-red-500">C) Sim, temos várias brechas conhecidas.</button>
+                </div>
+            </div>
+
+            <div id="step-5" class="step hidden text-left">
+                <span class="text-ecomp-cyan text-[10px] font-bold uppercase">Pergunta 04/05</span>
+                <h2 class="text-lg font-bold mt-2 mb-6 italic">Qual a facilidade de um estranho entrar "de carona" pelo portão hoje?</h2>
+                <div class="space-y-3">
+                    <button onclick="handleAnswer('acesso', 20, 6)" class="w-full p-4 text-left border border-slate-700 rounded-xl hover:border-ecomp-cyan transition text-sm text-slate-300 italic">A) Zero, temos intertravamento.</button>
+                    <button onclick="handleAnswer('acesso', 10, 6)" class="w-full p-4 text-left border border-slate-700 rounded-xl hover:border-ecomp-cyan transition text-sm text-slate-300 italic">B) Média, portões são lentos.</button>
+                    <button onclick="handleAnswer('acesso', 0, 6)" class="w-full p-4 text-left border border-slate-700 rounded-xl hover:border-red-500 transition text-sm text-slate-300 italic text-red-500">C) Alta, o acesso é frágil.</button>
+                </div>
+            </div>
+
+            <div id="step-6" class="step hidden text-left">
+                <span class="text-ecomp-cyan text-[10px] font-bold uppercase">Pergunta 05/05</span>
+                <h2 class="text-lg font-bold mt-2 mb-6 italic">Caso ocorra um incidente agora, quanto tempo sua equipe leva para localizar as imagens?</h2>
+                <div class="space-y-3">
+                    <button onclick="handleAnswer('velocidade', 20, 'result')" class="w-full p-4 text-left border border-slate-700 rounded-xl hover:border-ecomp-cyan transition text-sm text-slate-300 italic">A) Minutos. Acesso remoto e busca inteligente.</button>
+                    <button onclick="handleAnswer('velocidade', 10, 'result')" class="w-full p-4 text-left border border-slate-700 rounded-xl hover:border-ecomp-cyan transition text-sm text-slate-300 italic">B) Horas. Dependemos de busca manual no local.</button>
+                    <button onclick="handleAnswer('velocidade', 0, 'result')" class="w-full p-4 text-left border border-slate-700 rounded-xl hover:border-red-500 transition text-sm text-slate-300 italic text-red-500">C) Dias. Processo complexo ou sistema falha.</button>
+                </div>
+            </div>
+
+            <div id="step-loading" class="step hidden text-center py-10">
+                <div class="w-12 h-12 border-4 border-slate-700 border-t-ecomp-cyan rounded-full animate-spin mx-auto mb-4"></div>
+                <p class="text-ecomp-cyan text-[10px] font-bold tracking-widest uppercase">Analisando Vulnerabilidades...</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
