@@ -31,6 +31,32 @@
             50% { border-color: rgba(239, 68, 68, 1); box-shadow: 0 0 15px rgba(239, 68, 68, 0.3); }
         }
         .critical-border { animation: pulse-red 2s infinite; border-width: 2px !important; }
+        /* Melhora a nitidez global das fontes em telas digitais */
+        body {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
+        }
+
+        /* Aumenta o tamanho padrão e o peso das perguntas e textos */
+        .step h2 {
+            font-size: 1.5rem; /* Aproximadamente 24px */
+            line-height: 1.4;
+            font-weight: 800; /* Extra bold para nitidez */
+            letter-spacing: -0.025em;
+        }
+
+        .step p, .step span {
+            font-size: 1rem; /* 16px - padrão legível */
+            font-weight: 500;
+        }
+
+        /* Ajuste nos botões para as letras não ficarem "esmagadas" */
+        button {
+            font-size: 1rem !important;
+            font-weight: 700 !important;
+            letter-spacing: 0.025em;
+        }
     </style>
 </head>
 <body class="bg-ecomp-dark text-slate-100 font-sans antialiased">
